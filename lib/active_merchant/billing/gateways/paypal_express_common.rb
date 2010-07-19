@@ -7,7 +7,7 @@ module ActiveMerchant
         base.cattr_accessor :live_redirect_url
         base.cattr_accessor :live_redirect_giropay_url
         base.live_redirect_url = 'https://www.paypal.com/cgibin/webscr?cmd=_express-checkout&token='
-        base.live_redirect_giropay_url = 'https://www.paypal.com/webscr?cmd=_complete-express-checkout'
+        base.live_redirect_giropay_url = 'https://www.paypal.com/webscr?cmd=_complete-express-checkout&token='
       end
       
       def redirect_url(options)

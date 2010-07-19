@@ -25,6 +25,18 @@ module ActiveMerchant #:nodoc:
         @params['transaction_id']
       end
       
+      def giropay?
+        @params['payment_status'].to_s.upcase == "CREATED" && @params['payment_type'].to_s.upcase == "INSTANT"
+      end
+      
+      def bank_transfer?
+        @params['payment_status'].to_s.upcase == "PENDING" && @params['payment_type'].to_s.upcase == "ECHECK"
+      end
+      
+      def money_received?
+        @params['payment_status'].to_s.upcase == "COMPLETED" && @params['payment_type'].to_s.upcase == "INSTANT"
+      end
+      
       def address
         {  'name'       => @params['name'],
            'company'    => @params['payer_business'],

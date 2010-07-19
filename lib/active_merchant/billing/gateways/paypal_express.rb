@@ -9,6 +9,7 @@ module ActiveMerchant #:nodoc:
       include PaypalExpressCommon
       
       self.test_redirect_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token='
+      self.test_redirect_giropay_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_complete-express-checkout&token='
       self.supported_countries = ['US']
       self.homepage_url = 'https://www.paypal.com/cgi-bin/webscr?cmd=xpt/merchant/ExpressCheckoutIntro-outside'
       self.display_name = 'PayPal Express Checkout'
@@ -106,6 +107,9 @@ module ActiveMerchant #:nodoc:
               xml.tag! 'n2:OrderDescription', options[:description]
               xml.tag! 'n2:BuyerEmail', options[:email] unless options[:email].blank?
               xml.tag! 'n2:InvoiceID', options[:order_id]
+              xml.tag! 'n2:giropaySuccessURL', options[:giropay_success_url]
+              xml.tag! 'n2:giropayCancelURL', options[:giropay_cancel_url]
+              xml.tag! 'n2:BanktxnPendingURL', options[:bank_txn_pending_url]
         
               # Customization of the payment page
               xml.tag! 'n2:PageStyle', options[:page_style] unless options[:page_style].blank?

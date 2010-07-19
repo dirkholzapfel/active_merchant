@@ -21,6 +21,10 @@ module ActiveMerchant #:nodoc:
         @params['payer_country']
       end
       
+      def transaction_id
+        @params['transaction_id']
+      end
+      
       def address
         {  'name'       => @params['name'],
            'company'    => @params['payer_business'],
